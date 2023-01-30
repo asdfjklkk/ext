@@ -84,6 +84,42 @@ func (str StringExt) In(ignoreCase bool, strs ...StringExt) bool {
 	return returnValue
 }
 
+func (str StringExt) In2(ignoreCase bool, strs ...string) bool {
+	var returnValue bool = false
+	for _, v := range strs {
+		if ignoreCase {
+			if str.ToLower().String() == strings.ToLower(v) {
+				returnValue = true
+				break
+			}
+		} else {
+			if str.String() == v {
+				returnValue = true
+				break
+			}
+		}
+	}
+	return returnValue
+}
+
+func (str StringExt) In3(ignoreCase bool, strs []string) bool {
+	var returnValue bool = false
+	for _, v := range strs {
+		if ignoreCase {
+			if str.ToLower().String() == strings.ToLower(v) {
+				returnValue = true
+				break
+			}
+		} else {
+			if str.String() == v {
+				returnValue = true
+				break
+			}
+		}
+	}
+	return returnValue
+}
+
 func (str StringExt) InLike(ignoreCase bool, strs ...StringExt) bool {
 	var returnValue bool = false
 	for _, v := range strs {
@@ -94,6 +130,42 @@ func (str StringExt) InLike(ignoreCase bool, strs ...StringExt) bool {
 			}
 		} else {
 			if str.Index(v) != -1 {
+				returnValue = true
+				break
+			}
+		}
+	}
+	return returnValue
+}
+
+func (str StringExt) InLike2(ignoreCase bool, strs ...string) bool {
+	var returnValue bool = false
+	for _, v := range strs {
+		if ignoreCase {
+			if str.ToLower().Index(ToString(v).ToLower()) != -1 {
+				returnValue = true
+				break
+			}
+		} else {
+			if str.Index(ToString(v)) != -1 {
+				returnValue = true
+				break
+			}
+		}
+	}
+	return returnValue
+}
+
+func (str StringExt) InLike3(ignoreCase bool, strs []string) bool {
+	var returnValue bool = false
+	for _, v := range strs {
+		if ignoreCase {
+			if str.ToLower().Index(ToString(v).ToLower()) != -1 {
+				returnValue = true
+				break
+			}
+		} else {
+			if str.Index(ToString(v)) != -1 {
 				returnValue = true
 				break
 			}
