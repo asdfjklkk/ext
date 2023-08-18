@@ -182,6 +182,14 @@ func (str StringExt) BetweenAnd(minValue StringExt, maxValue StringExt) bool {
 	return returnValue
 }
 
+func (str StringExt) BetweenAnd2(minValue string, maxValue string) bool {
+	var returnValue bool = false
+	if str.Compare(ToString(minValue)) > -1 && str.Compare(ToString(maxValue)) < 1 {
+		returnValue = true
+	}
+	return returnValue
+}
+
 func (str StringExt) IsInt() bool {
 	var returnValue bool = false
 	_, err := strconv.Atoi(str.String())
